@@ -1,0 +1,23 @@
+
+restore_model: ''
+restore_model: ./pretrained/mixer_lj_384.pth
+
+log_dir: logs/lj/exp384
+checkpoint_dir: I:/checkpoints/lj/exp384-gan
+
+train_audio_dir: I:/tts/english/LJSpeech-1.1/wavs_proc
+train_labels: ./data/lj-meta-phon.csv
+
+pitch_dir: ./data/lj_pitches/wavs
+
+n_save_states_iter: 100
+n_save_backup_iter: 1000
+
+dim: 384
+learning_rate: 1.0e-4
+score_loss: 4.0
+fmatch_loss: 1.0
+
+f0_mean: 130.05478
+f0_std: 22.86267
+
