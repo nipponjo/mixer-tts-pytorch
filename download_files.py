@@ -4,8 +4,7 @@ import gdown
 
 # %%
 
-FILES_DICT = {
-  
+FILES_DICT = {  
     "mixer_lj_80.pth": {
         "path": "pretrained/mixer_lj_80.pth",
         "url": "https://drive.google.com/file/d/1YTiA6S3okiuX-_AttUhJNVgiPzVYAyjv/view?usp=sharing",
@@ -23,7 +22,6 @@ FILES_DICT = {
         "url": "https://drive.google.com/file/d/16Rq99ZmXVfiDE_nsxmUBzF3XKEOUh5wx/view?usp=sharing",
         "download": True,
     },
-    
 }
 
 # %%

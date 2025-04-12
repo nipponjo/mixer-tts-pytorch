@@ -1,7 +1,6 @@
 # %%
 import onnx
 import torch
-import matplotlib.pyplot as plt
 from models.mixer_tts.mixer_tts import MixerTTSModel as MixerTTS
 
 n = [384, 128, 80][0]
@@ -85,8 +84,9 @@ onnx.checker.check_model(onnxmodel)
 
 # %%
 
-import onnxruntime as ort
 import numpy as np
+import matplotlib.pyplot as plt
+import onnxruntime as ort
 from utils.phonemizer import text_to_ids_en
 
 ort_session = ort.InferenceSession(output_filepath, 

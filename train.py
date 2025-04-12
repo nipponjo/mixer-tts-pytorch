@@ -1,6 +1,5 @@
 # %%
 import os
-import numpy as np
 import torch
 
 from torch.utils.data import DataLoader
@@ -10,7 +9,7 @@ from models.mixer_tts.mixer_tts import MixerTTSModel
 from models.mixer_tts.modules.data_function import (TTSCollate, batch_to_gpu)
 from models.mixer_tts import net_config
 from models.common.loss import PatchDiscriminator, extract_chunks, calc_feature_match_loss
-from models.symbols import symbols, symbols_to_id
+from models.symbols import symbols
 
 from utils import get_config
 from utils.training import save_states
@@ -198,13 +197,12 @@ for epoch in range(n_epoch, config.epochs):
         }
         
         if train_gan:
-            # discriminator           
-
+            
+            # DISCRIMINATOR
             d_org, fmaps_org = critic(chunks_org_.requires_grad_(True))
             d_gen, _ = critic(chunks_gen_.detach())
 
             loss_d = 0.5*(d_org - 1).square().mean() + 0.5*(d_gen).square().mean()    
-            # 0.5-0.48 4.9. 20:10
 
             critic.zero_grad()
             loss_d.backward()
@@ -216,7 +214,7 @@ for epoch in range(n_epoch, config.epochs):
                     
             writer.add_scalar('train/gnorm_d', grad_norm_d, n_iter)
 
-            # TRAIN GENERATOR
+            # GENERATOR
             d_gen2, fmaps_gen = critic(chunks_gen_)
             loss_score = (d_gen2 - 1).square().mean()
             loss_fmatch = calc_feature_match_loss(fmaps_gen, fmaps_org)

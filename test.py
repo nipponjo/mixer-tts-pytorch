@@ -7,7 +7,8 @@ import sounddevice as sd
 
 # %%
 
-ckpt = torch.load('./pretrained/mixer_lj_128.pth')
+dim = [384, 128, 80][2]
+ckpt = torch.load(f'./pretrained/mixer_lj_{dim}.pth')
 
 mel_model = MixerTTSModel(**ckpt['net_config'])
 mel_model.load_state_dict(ckpt['model'])
